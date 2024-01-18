@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,400;1,8..144,900&family=Roboto:wght@500;900&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: smooth;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: calc(16px + (24 - 16) * (100vw - 400px) / (4000 - 400));
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+h6,
+h5,
+h4,
+h3,
+h2,
+h1 {
+  margin-top: 0;
+  margin-bottom: 0rem;
+  line-height: normal;
+  font-weight: inherit;
+}
+
+p {
+  margin: 0;
+  font-weight: inherit;
+}
+
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --BG-PY-color: #e5e5f7;
+  --BG-SY-color: #444cf755;
+  --BG-TY-color: #444cf7;
+  --PY-font-family: "Roboto Serif", serif;
+  --PY-font-size: 3rem;
+  --SY-font-size: 1.5rem;
+}
+
+main {
+  width: 100vw;
+  min-height: 100vh;
+  height: 100%;
+  background-color: var(--BG-PY-color);
+  opacity: 0.8;
+  background-image: repeating-radial-gradient(
+      circle at 0 0,
+      transparent 0,
+      var(--BG-PY-color) 13px
+    ),
+    repeating-linear-gradient(var(--BG-SY-color), var(--BG-TY-color));
+}
+
+.heading {
+  font-family: var(--PY-font-family);
+  padding: 5rem 0;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-title {
+  font-weight: 900;
+  font-size: var(--PY-font-size);
+}
+
+.subtitle {
+  font-weight: 100;
+  font-size: var(--SY-font-size);
+  text-align: center;
+}
+
+.d-flex {
+  display: flex;
+}
