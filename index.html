@@ -10,7 +10,7 @@
     <main>
       <section>
         <section class="heading d-flex">
-          <p class="main-title">Kanban Board</p>
+          <p class="main-title title">Kanban Board</p>
         </section>
         <section class="kanban d-grid">
           <div class="taskbox">
@@ -79,7 +79,21 @@
                 autocomplete="off"
                 maxlength="30"
               />
-              <button class="bi bi-plus" data-id="" name="submit"></button>
+
+              <label>
+                <input type="radio" name="colors" value="green" />
+              </label>
+              <label>
+                <input type="radio" name="colors" value="blue" />
+              </label>
+              <label>
+                <input type="radio" name="colors" value="orange" />
+              </label>
+              <label>
+                <input type="radio" name="colors" value="purple" />
+              </label>
+
+              <button class="bi bi-plus" data-id="0" name="submit"></button>
             </form>
           </div>
           <div class="taskbox">
@@ -109,7 +123,7 @@
                 </div>
               </form>
             </div>
-            <form class="add">
+            <form class="add d-flex align-center space-between m-t-1">
               <input
                 type="text"
                 name="task"
@@ -117,7 +131,7 @@
                 autocomplete="off"
                 maxlength="30"
               />
-              <button class="bi bi-plus" data-id="" name="submit"></button>
+              <button class="bi bi-plus" data-id="1" name="submit"></button>
             </form>
           </div>
           <div class="taskbox">
@@ -167,7 +181,7 @@
                 </div>
               </form>
             </div>
-            <form class="add">
+            <form class="add d-flex align-center space-between m-t-1">
               <input
                 type="text"
                 name="task"
@@ -175,7 +189,13 @@
                 autocomplete="off"
                 maxlength="30"
               />
-              <button class="bi bi-plus" data-id="" name="submit"></button>
+              <select name="colors" id="color-select" class="custom-select">
+                <option value="green"></option>
+                <option value="orange"></option>
+                <option value="purple"></option>
+                <option value="blue"></option>
+              </select>
+              <button class="bi bi-plus" data-id="2" name="submit"></button>
             </form>
           </div>
         </section>

@@ -234,6 +234,49 @@ form .bi-plus {
   visibility: visible;
 }
 
+/* .custom-select {
+  background-color: #12961d;
+} */
+
+.custom-select {
+  appearance: none;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  padding: 8px 20px 8px 10px;
+  border-radius: 20px;
+}
+
+.custom-select:focus {
+  outline: none;
+}
+
+.custom-select option {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.custom-select option[value="green"] {
+  background-color: green;
+  color: white;
+}
+
+.custom-select option[value="orange"] {
+  background-color: orange;
+  color: white;
+}
+
+.custom-select option[value="purple"] {
+  background-color: purple;
+  color: white;
+}
+
+.custom-select option[value="blue"] {
+  background-color: blue;
+  color: white;
+}
+
+/* end of temp custom */
+
 .post-it-orange {
   background-color: var(--PY-post-it-color);
 }
@@ -326,7 +369,6 @@ form .bi-plus {
 .kanban {
   grid-template-columns: repeat(auto-fit, 1fr);
   gap: 20px;
-  /* justify-content: center; */
 }
 
 @media (min-width: 768px) {
