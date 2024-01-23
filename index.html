@@ -12,7 +12,7 @@
         <section class="heading d-flex">
           <p class="main-title title">Kanban Board</p>
         </section>
-        <section class="kanban d-grid">
+        <section class="kanban d-grid p-b-1">
           <div class="taskbox">
             <div class="title d-flex space-between m-b-1">
               <p>TO DO</p>
@@ -31,20 +31,60 @@
                 </div>
                 <div>
                   <span class="post-it-date p-absolute">11/12/2024</span>
-                  <span class="post-it-btn p-absolute">
-                    <button class="bi bi-pencil edit" data-id="">
+                  <span
+                    class="post-it-btn d-flex space-between gap-2 p-absolute"
+                  >
+                    <div class="bi p-relative">
+                      <button class="bi bi-pencil edit" data-id=""></button>
                       <span class="tooltiptext">Edit</span>
-                    </button>
-                    <button
+                    </div>
+                    <!-- <button
                       class="bi bi-check-lg update hide"
                       data-id=""
-                    ></button>
-                    <button class="bi bi-color edit-color" data-id="">
+                    ></button> -->
+                    <div class="bi p-relative">
+                      <div class="color-select p-relative">
+                        <div class="colors-rad hide d-flex p-absolute">
+                          <label>
+                            <input
+                              type="radio"
+                              class="post-it-green"
+                              name="colors"
+                              value="green"
+                            />
+                          </label>
+                          <label>
+                            <input
+                              type="radio"
+                              class="post-it-blue"
+                              name="colors"
+                              value="blue"
+                            />
+                          </label>
+                          <label>
+                            <input
+                              type="radio"
+                              class="post-it-orange"
+                              name="colors"
+                              value="orange"
+                            />
+                          </label>
+                          <label>
+                            <input
+                              type="radio"
+                              class="post-it-purple"
+                              name="colors"
+                              value="purple"
+                            />
+                          </label>
+                        </div>
+                      </div>
                       <span class="tooltiptext">Change color</span>
-                    </button>
-                    <button class="bi bi-trash delete" data-id="">
+                    </div>
+                    <div class="bi p-relative">
+                      <button class="bi bi-trash delete" data-id=""></button>
                       <span class="tooltiptext">Delete</span>
-                    </button>
+                    </div>
                   </span>
                 </div>
               </form>
@@ -54,18 +94,66 @@
                   type="text"
                   name="task"
                   autocomplete="off"
+                  disabled="disabled"
                 >
-                  Record Kanban
+                  Play total war troy
                 </div>
                 <div>
                   <span class="post-it-date p-absolute">11/12/2024</span>
-                  <span class="post-it-btn p-absolute">
-                    <button class="bi bi-pencil edit" data-id=""></button>
-                    <button
+                  <span
+                    class="post-it-btn d-flex space-between gap-2 p-absolute"
+                  >
+                    <div class="bi p-relative">
+                      <button class="bi bi-pencil edit" data-id=""></button>
+                      <span class="tooltiptext">Edit</span>
+                    </div>
+                    <!-- <button
                       class="bi bi-check-lg update hide"
                       data-id=""
-                    ></button>
-                    <button class="bi bi-trash delete" data-id=""></button>
+                    ></button> -->
+                    <div class="bi p-relative">
+                      <div class="color-select p-relative">
+                        <div class="colors-rad hide d-flex p-absolute">
+                          <label>
+                            <input
+                              type="radio"
+                              class="post-it-green"
+                              name="colors"
+                              value="green"
+                            />
+                          </label>
+                          <label>
+                            <input
+                              type="radio"
+                              class="post-it-blue"
+                              name="colors"
+                              value="blue"
+                            />
+                          </label>
+                          <label>
+                            <input
+                              type="radio"
+                              class="post-it-orange"
+                              name="colors"
+                              value="orange"
+                            />
+                          </label>
+                          <label>
+                            <input
+                              type="radio"
+                              class="post-it-purple"
+                              name="colors"
+                              value="purple"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                      <span class="tooltiptext">Change color</span>
+                    </div>
+                    <div class="bi p-relative">
+                      <button class="bi bi-trash delete" data-id=""></button>
+                      <span class="tooltiptext">Delete</span>
+                    </div>
                   </span>
                 </div>
               </form>
@@ -80,20 +168,49 @@
                 maxlength="30"
               />
 
-              <label>
-                <input type="radio" name="colors" value="green" />
-              </label>
-              <label>
-                <input type="radio" name="colors" value="blue" />
-              </label>
-              <label>
-                <input type="radio" name="colors" value="orange" />
-              </label>
-              <label>
-                <input type="radio" name="colors" value="purple" />
-              </label>
+              <div class="color-select p-relative post-it-green">
+                <div class="colors-rad hide d-flex p-absolute">
+                  <label>
+                    <input
+                      type="radio"
+                      class="post-it-green"
+                      name="colors"
+                      value="green"
+                      checked
+                    />
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      class="post-it-blue"
+                      name="colors"
+                      value="blue"
+                    />
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      class="post-it-orange"
+                      name="colors"
+                      value="orange"
+                    />
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      class="post-it-purple"
+                      name="colors"
+                      value="purple"
+                    />
+                  </label>
+                </div>
+                <span class="tooltiptext">Select Color</span>
+              </div>
 
-              <button class="bi bi-plus" data-id="0" name="submit"></button>
+              <div class="bi p-relative">
+                <button class="bi bi-plus" data-id="0" name="submit"></button>
+                <span class="tooltiptext">Add Tooltip</span>
+              </div>
             </form>
           </div>
           <div class="taskbox">
@@ -101,24 +218,75 @@
               <p>IN PROGRESS</p>
               <span class="pending pending-counter fw-bolder">1</span>
             </div>
-            <div class="cards pending">
-              <form class="card">
-                <input
-                  value="System Design Notes"
+            <div
+              class="cards pending d-flex gap-1 flex-column align-center wrap"
+            >
+              <form class="card p-relative">
+                <div
+                  class="post-it post-it-purple"
                   type="text"
                   name="task"
                   autocomplete="off"
                   disabled="disabled"
-                />
+                >
+                  play napoleon total war
+                </div>
                 <div>
-                  <!-- <span class="task-id">#38833</span> -->
-                  <span>
-                    <button class="bi bi-pencil edit" data-id=""></button>
-                    <button
+                  <span class="post-it-date p-absolute">11/12/2024</span>
+                  <span
+                    class="post-it-btn d-flex space-between gap-2 p-absolute"
+                  >
+                    <div class="bi p-relative">
+                      <button class="bi bi-pencil edit" data-id=""></button>
+                      <span class="tooltiptext">Edit</span>
+                    </div>
+                    <!-- <button
                       class="bi bi-check-lg update hide"
                       data-id=""
-                    ></button>
-                    <button class="bi bi-trash3 delete" data-id=""></button>
+                    ></button> -->
+                    <div class="bi p-relative">
+                      <div class="color-select p-relative">
+                        <div class="colors-rad hide d-flex p-absolute">
+                          <label>
+                            <input
+                              type="radio"
+                              class="post-it-green"
+                              name="colors"
+                              value="green"
+                            />
+                          </label>
+                          <label>
+                            <input
+                              type="radio"
+                              class="post-it-blue"
+                              name="colors"
+                              value="blue"
+                            />
+                          </label>
+                          <label>
+                            <input
+                              type="radio"
+                              class="post-it-orange"
+                              name="colors"
+                              value="orange"
+                            />
+                          </label>
+                          <label>
+                            <input
+                              type="radio"
+                              class="post-it-purple"
+                              name="colors"
+                              value="purple"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                      <span class="tooltiptext">Change color</span>
+                    </div>
+                    <div class="bi p-relative">
+                      <button class="bi bi-trash delete" data-id=""></button>
+                      <span class="tooltiptext">Delete</span>
+                    </div>
                   </span>
                 </div>
               </form>
@@ -131,6 +299,46 @@
                 autocomplete="off"
                 maxlength="30"
               />
+
+              <div class="color-select p-relative post-it-green">
+                <div class="colors-rad hide d-flex p-absolute">
+                  <label>
+                    <input
+                      type="radio"
+                      class="post-it-green"
+                      name="colors"
+                      value="green"
+                      checked
+                    />
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      class="post-it-blue"
+                      name="colors"
+                      value="blue"
+                    />
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      class="post-it-orange"
+                      name="colors"
+                      value="orange"
+                    />
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      class="post-it-purple"
+                      name="colors"
+                      value="purple"
+                    />
+                  </label>
+                </div>
+                <span class="tooltiptext">Select Color</span>
+              </div>
+
               <button class="bi bi-plus" data-id="1" name="submit"></button>
             </form>
           </div>
@@ -139,44 +347,144 @@
               <p>COMPLETED</p>
               <span class="completed completed-counter fw-bolder">2</span>
             </div>
-            <div class="cards completed">
-              <form class="card">
-                <input
-                  value="React Projects"
+            <div
+              class="cards completed d-flex gap-1 flex-column align-center wrap"
+            >
+              <form class="card p-relative">
+                <div
+                  class="post-it post-it-blue"
                   type="text"
                   name="task"
                   autocomplete="off"
                   disabled="disabled"
-                />
+                >
+                  play war hammer 40k
+                </div>
                 <div>
-                  <!-- <span class="task-id">#88198</span> -->
-                  <span>
-                    <button class="bi bi-pencil edit" data-id=""></button>
-                    <button
-                      class="bi bi-check-lg update hide"
-                      data-id=""
-                    ></button>
-                    <button class="bi bi-trash3 delete" data-id=""></button>
+                  <span class="post-it-date p-absolute">11/12/2024</span>
+                  <span
+                    class="post-it-btn d-flex space-between gap-2 p-absolute"
+                  >
+                    <div class="bi p-relative">
+                      <button class="bi bi-pencil edit" data-id=""></button>
+                      <span class="tooltiptext">Edit</span>
+                    </div>
+                    <!-- <button
+                    class="bi bi-check-lg update hide"
+                    data-id=""
+                  ></button> -->
+                    <div class="bi p-relative">
+                      <div class="color-select p-relative">
+                        <div class="colors-rad hide d-flex p-absolute">
+                          <label>
+                            <input
+                              type="radio"
+                              class="post-it-green"
+                              name="colors"
+                              value="green"
+                            />
+                          </label>
+                          <label>
+                            <input
+                              type="radio"
+                              class="post-it-blue"
+                              name="colors"
+                              value="blue"
+                            />
+                          </label>
+                          <label>
+                            <input
+                              type="radio"
+                              class="post-it-orange"
+                              name="colors"
+                              value="orange"
+                            />
+                          </label>
+                          <label>
+                            <input
+                              type="radio"
+                              class="post-it-purple"
+                              name="colors"
+                              value="purple"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                      <span class="tooltiptext">Change color</span>
+                    </div>
+                    <div class="bi p-relative">
+                      <button class="bi bi-trash delete" data-id=""></button>
+                      <span class="tooltiptext">Delete</span>
+                    </div>
                   </span>
                 </div>
               </form>
-              <form class="card">
-                <input
-                  value="Edit OOPS Lectures"
+              <form class="card p-relative">
+                <div
+                  class="post-it post-it-purple"
                   type="text"
                   name="task"
                   autocomplete="off"
                   disabled="disabled"
-                />
+                >
+                  play showun 2
+                </div>
                 <div>
-                  <!-- <span class="task-id">#23030</span> -->
-                  <span>
-                    <button class="bi bi-pencil edit" data-id=""></button>
-                    <button
-                      class="bi bi-check-lg update hide"
-                      data-id=""
-                    ></button>
-                    <button class="bi bi-trash3 delete" data-id=""></button>
+                  <span class="post-it-date p-absolute">11/12/2024</span>
+                  <span
+                    class="post-it-btn d-flex space-between gap-2 p-absolute"
+                  >
+                    <div class="bi p-relative">
+                      <button class="bi bi-pencil edit" data-id=""></button>
+                      <span class="tooltiptext">Edit</span>
+                    </div>
+                    <!-- <button
+                    class="bi bi-check-lg update hide"
+                    data-id=""
+                  ></button> -->
+                    <div class="bi p-relative">
+                      <div class="color-select p-relative">
+                        <div class="colors-rad hide d-flex p-absolute">
+                          <label>
+                            <input
+                              type="radio"
+                              class="post-it-green"
+                              name="colors"
+                              value="green"
+                            />
+                          </label>
+                          <label>
+                            <input
+                              type="radio"
+                              class="post-it-blue"
+                              name="colors"
+                              value="blue"
+                            />
+                          </label>
+                          <label>
+                            <input
+                              type="radio"
+                              class="post-it-orange"
+                              name="colors"
+                              value="orange"
+                            />
+                          </label>
+                          <label>
+                            <input
+                              type="radio"
+                              class="post-it-purple"
+                              name="colors"
+                              value="purple"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                      <span class="tooltiptext">Change color</span>
+                    </div>
+                    <div class="bi p-relative">
+                      <button class="bi bi-trash delete" data-id=""></button>
+                      <span class="tooltiptext">Delete</span>
+                    </div>
                   </span>
                 </div>
               </form>
@@ -189,12 +497,46 @@
                 autocomplete="off"
                 maxlength="30"
               />
-              <select name="colors" id="color-select" class="custom-select">
-                <option value="green"></option>
-                <option value="orange"></option>
-                <option value="purple"></option>
-                <option value="blue"></option>
-              </select>
+
+              <div class="color-select p-relative post-it-green">
+                <div class="colors-rad hide d-flex p-absolute">
+                  <label>
+                    <input
+                      type="radio"
+                      class="post-it-green"
+                      name="colors"
+                      value="green"
+                      checked
+                    />
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      class="post-it-blue"
+                      name="colors"
+                      value="blue"
+                    />
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      class="post-it-orange"
+                      name="colors"
+                      value="orange"
+                    />
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      class="post-it-purple"
+                      name="colors"
+                      value="purple"
+                    />
+                  </label>
+                </div>
+                <span class="tooltiptext">Select Color</span>
+              </div>
+
               <button class="bi bi-plus" data-id="2" name="submit"></button>
             </form>
           </div>

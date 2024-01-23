@@ -69,7 +69,7 @@ ol {
 }
 
 main {
-  width: 100vw;
+  /* width: 100vw; */
   min-height: 100vh;
   height: 100%;
   background-color: var(--BG-PY-color);
@@ -187,10 +187,10 @@ title p {
 
 form .bi-plus {
   background-image: url(./assets/add_FILL0.svg);
-  color: var(--BI-plus);
+  /* color: var(--BI-plus); */
   filter: invert(37%) sepia(100%) saturate(609%) hue-rotate(81deg)
     brightness(95%) contrast(95%);
-  border: 2px solid var(--BI-plus);
+  /* border: 2px solid var(--BI-plus); */
 }
 
 .add {
@@ -217,6 +217,9 @@ form .bi-plus {
   top: 150%;
   left: 50%;
   margin-left: -60px;
+  font-size: 13px;
+  font-family: Arial;
+  user-select: none;
 }
 
 .tooltiptext::after {
@@ -234,48 +237,39 @@ form .bi-plus {
   visibility: visible;
 }
 
-/* .custom-select {
-  background-color: #12961d;
-} */
+.color-select:hover .tooltiptext {
+  visibility: visible;
+}
 
-.custom-select {
-  appearance: none;
-  background-color: transparent;
-  border: 1px solid #ccc;
-  padding: 8px 20px 8px 10px;
+.color-select {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-picker);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.colors-rad {
+  top: -20px;
+  transform: translate(-50%, -50%);
+  background-color: var(--BG-PY-color);
   border-radius: 20px;
+  padding: 3px;
 }
 
-.custom-select:focus {
-  outline: none;
-}
-
-.custom-select option {
-  padding: 10px;
-  border-radius: 10px;
-}
-
-.custom-select option[value="green"] {
-  background-color: green;
-  color: white;
-}
-
-.custom-select option[value="orange"] {
-  background-color: orange;
-  color: white;
-}
-
-.custom-select option[value="purple"] {
-  background-color: purple;
-  color: white;
-}
-
-.custom-select option[value="blue"] {
-  background-color: blue;
-  color: white;
+.colors-rad input[type="radio"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--color-picker);
+  cursor: pointer;
 }
 
 /* end of temp custom */
+
+/* .taskbox {
+} */
 
 .post-it-orange {
   background-color: var(--PY-post-it-color);
@@ -337,6 +331,10 @@ form .bi-plus {
   margin-top: 1.5rem;
 }
 
+.p-b-1 {
+  padding-bottom: 1.5rem;
+}
+
 .fw-bolder {
   font-weight: 900;
 }
@@ -355,6 +353,10 @@ form .bi-plus {
 
 .gap-1 {
   gap: 1rem;
+}
+
+.gap-2 {
+  gap: 5px;
 }
 
 .bi {

@@ -77,3 +77,18 @@ addForm.forEach((form) => {
     }
   });
 });
+
+const colorPicker = document.querySelector(".color-select");
+
+colorPicker.addEventListener("click", (e) => {
+  const children = colorPicker.children[0];
+  children.classList.toggle("hide");
+
+  if (e.target.type === "radio") {
+    e.target.parentElement.parentElement.parentElement.className = "";
+    e.target.parentElement.parentElement.parentElement.className =
+      "color-select p-relative";
+    const color = e.target.className;
+    e.target.parentElement.parentElement.parentElement.classList.add(color);
+  }
+});
