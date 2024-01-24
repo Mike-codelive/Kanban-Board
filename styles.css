@@ -66,6 +66,7 @@ ol {
   --FT-post-it-color: #1dc0ef;
   --BI-plus: #12961d;
   --color-picker: #000000;
+  --Post-it-add-width: 285px;
 }
 
 main {
@@ -207,6 +208,7 @@ form .bi-plus {
 }
 
 .add {
+  max-width: var(--Post-it-add-width);
   background-color: var(--BG-PY-color);
   padding: 1.5rem;
   border-radius: 15px;
@@ -215,6 +217,10 @@ form .bi-plus {
 
 .post-it:focus-visible {
   outline-color: transparent;
+}
+
+.post-it {
+  transition: background-color 1s ease-in-out;
 }
 
 .tooltiptext {
@@ -370,6 +376,11 @@ form .bi-plus {
 
 .gap-2 {
   gap: 5px;
+}
+
+.m-center {
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .bi {

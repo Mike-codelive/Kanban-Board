@@ -26,7 +26,7 @@ export default class App {
       color: color,
       date: getDate(),
     };
-    console.log(task);
+    // console.log(task);
 
     column.tasks.push(task);
     save(data);
@@ -53,7 +53,14 @@ export default class App {
       return column.columnId == updatedInformation.columnId;
     });
 
-    task.content = updatedInformation.content;
+    if (!updatedInformation.content) {
+      task.color = updatedInformation.color;
+    }
+
+    if (!updatedInformation.color) {
+      task.content = updatedInformation.content;
+    }
+
     currentColumn.tasks.splice(currentColumn.tasks.indexOf(task), 1);
     targetColumn.tasks.push(task);
 

@@ -42,7 +42,7 @@ function addTaskCard(task, index) {
     </div>
       <div class="bi p-relative">
         <div class="color-select p-relative">
-          <div class="colors-rad hide d-flex p-absolute">
+          <div data-column='${index}' class="colors-rad hide d-flex p-absolute">
             <label>
               <input
                 type="radio"
@@ -124,7 +124,6 @@ taskbox.forEach((column) => {
       const content =
         e.target.parentElement.parentElement.parentElement
           .previousElementSibling.firstElementChild.value;
-      // console.log(Number(taskId), columnId, content);
       App.updateTask(taskId, {
         columnId: columnId,
         content: content,
@@ -144,7 +143,7 @@ addForm.forEach((form) => {
         form.task.value.trim(),
         form.colors.value
       );
-      console.log(form.colors.value);
+      // console.log(form.colors.value);
       addTaskCard(task, form.submit.dataset.id);
       addClickEventToColorPicker();
       form.reset();
@@ -173,7 +172,28 @@ const addClickEventToColorPicker = () => {
         e.target.parentElement.parentElement.parentElement.className =
           "color-select p-relative";
         const color = e.target.className;
+        const colorValue = e.target.value;
+        const taskId = e.target.dataset.id;
+        const columnId = e.target.parentElement.parentElement.dataset.column;
+        console.log(columnId, colorValue);
         e.target.parentElement.parentElement.parentElement.classList.add(color);
+
+        if (
+          e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.previousElementSibling.firstElementChild.classList.contains(
+            "post-it"
+          )
+        ) {
+          console.log(
+            (e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.previousElementSibling.firstElementChild.className =
+              "")
+          );
+          e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.previousElementSibling.firstElementChild.className = `post-it ${color}`;
+
+          App.updateTask(taskId, {
+            columnId: columnId,
+            color: colorValue,
+          });
+        }
       }
     });
   });
