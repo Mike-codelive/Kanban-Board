@@ -1,17 +1,5 @@
 import App from "./app.js";
 
-// console.log("kalem on the track boy");
-// console.log(App.getAllTasks());
-// console.log(App.getTasks());
-// console.log(App.insertTask(0, "test task whit date"));
-// App.deleteTask(43416);
-// console.log(
-//   App.updateTask(67127, {
-//     columnId: 2,
-//     content: "updated task",
-//   })
-// );
-
 const todo = document.querySelector(".cards.todo");
 const pending = document.querySelector(".cards.pending");
 const completed = document.querySelector(".cards.completed");
@@ -23,34 +11,84 @@ function addTaskCard(task, index) {
   element.draggable = true;
   element.dataset.id = task.taskId;
   element.innerHTML = `
-        <div
-        class="post-it post-it-${task.color}"
-        type="text"
-        name="task"
-        autocomplete="off"
-        disabled="disabled"
-      >
-      ${task.content}
-      </div>
+  <div class="post-it-text p-relative">
+  <textarea
+    class="post-it post-it-${task.color}"
+    type="text"
+    name="task"
+    autocomplete="off"
+    disabled="disabled"
+    maxlength="100"
+  >${task.content}</textarea>
+  <span class="post-it-pag"></span>
+</div>
 
-      <div>
-      <span class="post-it-date p-absolute">${task.date}</span>
-      <span class="post-it-btn p-absolute">
-        <button class="bi bi-pencil edit" data-id="${task.taskId}">
-          <span class="tooltiptext">Edit</span>
-        </button>
-        <button
-          class="bi bi-check-lg update hide"
-          data-id="${task.taskId}"
-        ></button>
-        <button class="bi bi-color edit-color" data-id="${task.taskId}">
-          <span class="tooltiptext">Change color</span>
-        </button>
-        <button class="bi bi-trash delete" data-id="${task.taskId}">
-          <span class="tooltiptext">Delete</span>
-        </button>
-      </span>
+    <div>
+    <span class="post-it-date p-absolute">${task.date}</span>
+    <span
+      class="post-it-btn d-flex space-between gap-2 p-absolute"
+    >
+      <div class="bi p-relative">
+        <button class="bi bi-pencil edit" data-id="${task.taskId}"></button>
+        <span class="tooltiptext">Edit</span>
+      </div>
+      <div class="bi p-relative hide">
+      <button
+        class="bi bi-check-lg update"
+        data-id="${task.taskId}"
+        data-column="${index}"
+      ></button>
+      <span class="tooltiptext">Save</span>
     </div>
+      <div class="bi p-relative">
+        <div class="color-select p-relative">
+          <div class="colors-rad hide d-flex p-absolute">
+            <label>
+              <input
+                type="radio"
+                class="post-it-green"
+                name="colors"
+                value="green"
+                data-id="${task.taskId}"
+              />
+            </label>
+            <label>
+              <input
+                type="radio"
+                class="post-it-blue"
+                name="colors"
+                value="blue"
+                data-id="${task.taskId}"
+              />
+            </label>
+            <label>
+              <input
+                type="radio"
+                class="post-it-orange"
+                name="colors"
+                value="orange"
+                data-id="${task.taskId}"
+              />
+            </label>
+            <label>
+              <input
+                type="radio"
+                class="post-it-purple"
+                name="colors"
+                value="purple"
+                data-id="${task.taskId}"
+              />
+            </label>
+          </div>
+        </div>
+        <span class="tooltiptext">Change color</span>
+      </div>
+      <div class="bi p-relative">
+        <button class="bi bi-trash delete" data-id="${task.taskId}"></button>
+        <span class="tooltiptext">Delete</span>
+      </div>
+    </span>
+  </div>
     `;
   taskbox[index].appendChild(element);
 }
@@ -61,34 +99,94 @@ App.getAllTasks().forEach((tasks, index) => {
   });
 });
 
+taskbox.forEach((column) => {
+  column.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    if (e.target.classList.contains("edit")) {
+      e.target.parentElement.parentElement.parentElement.previousElementSibling.firstElementChild.removeAttribute(
+        "disabled"
+      );
+      e.target.parentElement.classList.add("hide");
+      e.target.parentElement.nextElementSibling.classList.remove("hide");
+    }
+
+    if (e.target.classList.contains("update")) {
+      e.target.parentElement.parentElement.parentElement.previousElementSibling.firstElementChild.setAttribute(
+        "disabled",
+        "disabled"
+      );
+      e.target.parentElement.classList.add("hide");
+      e.target.parentElement.previousElementSibling.classList.remove("hide");
+
+      const taskId = e.target.dataset.id;
+      const columnId = e.target.dataset.column;
+      const content =
+        e.target.parentElement.parentElement.parentElement
+          .previousElementSibling.firstElementChild.value;
+      // console.log(Number(taskId), columnId, content);
+      App.updateTask(taskId, {
+        columnId: columnId,
+        content: content,
+      });
+    }
+  });
+});
+
 const addForm = document.querySelectorAll(".add");
 
 addForm.forEach((form) => {
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
     if (form.task.value) {
       const task = App.insertTask(
         form.submit.dataset.id,
-        form.task.value.trim()
+        form.task.value.trim(),
+        form.colors.value
       );
       console.log(form.colors.value);
       addTaskCard(task, form.submit.dataset.id);
+      addClickEventToColorPicker();
       form.reset();
     }
   });
 });
 
-const colorPicker = document.querySelector(".color-select");
+const resetAllColorPicker = () => {
+  const colorPicker = document.querySelectorAll(".color-select");
+  colorPicker.forEach((picker) => {
+    const childNode = picker.children[0];
+    childNode.classList.add("hide");
+  });
+};
 
-colorPicker.addEventListener("click", (e) => {
-  const children = colorPicker.children[0];
-  children.classList.toggle("hide");
+const addClickEventToColorPicker = () => {
+  const colorPicker = document.querySelectorAll(".color-select");
+  colorPicker.forEach((picker) => {
+    picker.addEventListener("click", (e) => {
+      const children = picker.children[0];
+      resetAllColorPicker();
+      children.classList.toggle("hide");
 
-  if (e.target.type === "radio") {
-    e.target.parentElement.parentElement.parentElement.className = "";
-    e.target.parentElement.parentElement.parentElement.className =
-      "color-select p-relative";
-    const color = e.target.className;
-    e.target.parentElement.parentElement.parentElement.classList.add(color);
+      if (e.target.type === "radio") {
+        e.target.parentElement.parentElement.parentElement.className = "";
+        e.target.parentElement.parentElement.parentElement.className =
+          "color-select p-relative";
+        const color = e.target.className;
+        e.target.parentElement.parentElement.parentElement.classList.add(color);
+      }
+    });
+  });
+};
+
+document.addEventListener("click", (e) => {
+  const colorPicker = document.querySelectorAll(".color-select");
+  const isColorPicker = Array.from(colorPicker).some((picker) =>
+    picker.contains(e.target)
+  );
+  if (!isColorPicker) {
+    resetAllColorPicker();
   }
 });
+
+addClickEventToColorPicker();

@@ -129,6 +129,16 @@ title p {
   color: var(--completed-counter-color);
 }
 
+.post-it-text {
+  min-width: 217px;
+  max-width: 217px;
+  height: 150px;
+  border-radius: 0 0 0 30px/45px;
+  overflow: hidden;
+  box-shadow: inset 0 -40px 40px rgba(0, 0, 0, 0.2),
+    inset 0 25px 10px rgba(0, 0, 0, 0.2), 0 5px 6px 5px rgba(0, 0, 0, 0.2);
+}
+
 .post-it {
   position: relative;
   border: 0px;
@@ -139,15 +149,14 @@ title p {
   box-sizing: border-box;
   border-radius: 0 0 0 30px/45px;
   /* background-color: #ffa; */
+  outline: none;
   font-size: 20px;
   resize: none;
   overflow: hidden;
   font-family: var(--SY-font-family);
-  box-shadow: inset 0 -40px 40px rgba(0, 0, 0, 0.2),
-    inset 0 25px 10px rgba(0, 0, 0, 0.2), 0 5px 6px 5px rgba(0, 0, 0, 0.2);
 }
 
-.post-it:before {
+.post-it-pag {
   content: "";
   display: block;
   position: absolute;
@@ -178,6 +187,10 @@ title p {
 
 .bi-trash {
   background-image: url(./assets/delete_FILL0.svg);
+}
+
+.bi-check-lg {
+  background-image: url(./assets/border_color.svg);
 }
 
 .bi.bi-color {

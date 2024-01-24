@@ -20,14 +20,18 @@
             </div>
             <div class="cards todo d-flex gap-1 flex-column align-center wrap">
               <form class="card p-relative">
-                <div
-                  class="post-it post-it-orange"
-                  type="text"
-                  name="task"
-                  autocomplete="off"
-                  disabled="disabled"
-                >
-                  Record JavaScript Preview
+                <div class="post-it-text p-relative">
+                  <textarea
+                    class="post-it post-it-orange"
+                    type="text"
+                    name="task"
+                    autocomplete="off"
+                    disabled="disabled"
+                    maxlength="100"
+                  >
+                    Record JavaScript Preview
+                  </textarea>
+                  <span class="post-it-pag"></span>
                 </div>
                 <div>
                   <span class="post-it-date p-absolute">11/12/2024</span>
@@ -38,10 +42,14 @@
                       <button class="bi bi-pencil edit" data-id=""></button>
                       <span class="tooltiptext">Edit</span>
                     </div>
-                    <!-- <button
-                      class="bi bi-check-lg update hide"
-                      data-id=""
-                    ></button> -->
+                    <div class="bi p-relative hide">
+                      <button
+                        class="bi bi-check-lg update"
+                        data-id="99999"
+                        data-column="0"
+                      ></button>
+                      <span class="tooltiptext">Save</span>
+                    </div>
                     <div class="bi p-relative">
                       <div class="color-select p-relative">
                         <div class="colors-rad hide d-flex p-absolute">
