@@ -25,11 +25,12 @@ export default class App {
       content: content,
       color: color,
       date: getDate(),
+      position: column.tasks.length,
     };
     // console.log(task);
 
     column.tasks.push(task);
-    save(data);
+    this.save(data);
     return task;
   }
 
@@ -61,10 +62,34 @@ export default class App {
       task.content = updatedInformation.content;
     }
 
-    currentColumn.tasks.splice(currentColumn.tasks.indexOf(task), 1);
+    const taskIndex = currentColumn.tasks.indexOf(task);
+    task.position = taskIndex;
+
+    currentColumn.tasks.splice(taskIndex, 1);
     targetColumn.tasks.push(task);
 
-    save(data);
+    this.save(data);
+  }
+
+  static moveTask(taskId, sourceColumnId, targetColumnId, newPosition) {
+    const data = read();
+
+    // Find the source and target columns
+    const sourceColumn = data.find((col) => col.columnId == sourceColumnId);
+    const targetColumn = data.find((col) => col.columnId == targetColumnId);
+
+    // Find the task in the source column
+    const task = sourceColumn.tasks.find((t) => t.taskId == taskId);
+
+    // Update the task's position in the source column
+    const sourceTaskIndex = sourceColumn.tasks.indexOf(task);
+    sourceColumn.tasks.splice(sourceTaskIndex, 1);
+
+    // Update the task's position in the target column
+    task.position = newPosition;
+    targetColumn.tasks.splice(newPosition, 0, task);
+
+    this.save(data);
   }
 
   static deleteTask(taskId) {
@@ -75,16 +100,35 @@ export default class App {
         return item.taskId == taskId;
       });
 
-      column.tasks.splice(column.tasks.indexOf(task), 1);
+      if (task) {
+        column.tasks.splice(column.tasks.indexOf(task), 1);
+      }
     }
 
-    save(data);
+    this.save(data);
+  }
+  static columnCount() {
+    const data = read();
+
+    const todo = document.querySelector("span.todo");
+    todo.textContent = data[0].tasks.length;
+
+    const pending = document.querySelector("span.pending");
+    pending.textContent = data[1].tasks.length;
+
+    const completed = document.querySelector("span.completed");
+    completed.textContent = data[2].tasks.length;
   }
 
   static getAllTasks() {
     const data = read();
-    columnCount();
+    this.columnCount();
     return [data[0].tasks, data[1].tasks, data[2].tasks];
+  }
+
+  static save(data) {
+    localStorage.setItem("data", JSON.stringify(data));
+    this.columnCount();
   }
 }
 
@@ -102,10 +146,10 @@ const read = () => {
   return JSON.parse(data);
 };
 
-const save = (data) => {
-  localStorage.setItem("data", JSON.stringify(data));
-  columnCount();
-};
+// const save = (data) => {
+//   localStorage.setItem("data", JSON.stringify(data));
+//   columnCount();
+// };
 
 const getDate = () => {
   const currentDate = new Date();
@@ -117,15 +161,15 @@ const getDate = () => {
   return `${day}/${month}/${year}`;
 };
 
-const columnCount = () => {
-  const data = read();
+// const columnCount = () => {
+//   const data = read();
 
-  const todo = document.querySelector("span.todo");
-  todo.textContent = data[0].tasks.length;
+//   const todo = document.querySelector("span.todo");
+//   todo.textContent = data[0].tasks.length;
 
-  const pending = document.querySelector("span.pending");
-  pending.textContent = data[1].tasks.length;
+//   const pending = document.querySelector("span.pending");
+//   pending.textContent = data[1].tasks.length;
 
-  const completed = document.querySelector("span.completed");
-  completed.textContent = data[2].tasks.length;
-};
+//   const completed = document.querySelector("span.completed");
+//   completed.textContent = data[2].tasks.length;
+// };

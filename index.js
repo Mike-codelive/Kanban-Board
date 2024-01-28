@@ -129,6 +129,61 @@ taskbox.forEach((column) => {
         content: content,
       });
     }
+
+    if (e.target.classList.contains("delete")) {
+      console.log("hit trash can");
+      e.target.parentElement.parentElement.parentElement.parentElement.remove();
+      App.deleteTask(e.target.dataset.id);
+    }
+  });
+
+  column.addEventListener("dragstart", (e) => {
+    if (e.target.classList.contains("card")) {
+      e.target.classList.add("dragging");
+    }
+  });
+  let currPostn;
+
+  column.addEventListener("dragover", (e) => {
+    const card = document.querySelector(".dragging");
+    const columnCards = Array.from(column.querySelectorAll(".card"));
+    if (card) {
+      const mouseY = e.clientY;
+      const columnRect = column.getBoundingClientRect();
+      let insertIndex = columnCards.findIndex((card) => {
+        const cardRect = card.getBoundingClientRect();
+        const cardMiddleY = cardRect.top + cardRect.height / 2;
+        return mouseY < cardMiddleY;
+      });
+      currPostn = insertIndex;
+
+      if (insertIndex === -1) {
+        insertIndex = columnCards.length;
+        currPostn = insertIndex;
+      }
+      console.log(currPostn);
+
+      column.insertBefore(card, columnCards[insertIndex]);
+    }
+  });
+
+  column.addEventListener("dragend", (e) => {
+    if (e.target.classList.contains("card")) {
+      e.target.classList.remove("dragging");
+
+      const taskId = e.target.dataset.id;
+      const sourceColumnId = e.target.parentElement.dataset.column;
+
+      // Identify the target column and new position based on the drop location
+      const targetColumnId = e.target.parentElement.dataset.column; // Extracted from the dragover event;
+      // const newPosition = columnCards.findIndex((card) =>
+      //   card.classList.contains("dragging")
+      // );
+
+      console.log(currPostn);
+
+      App.moveTask(taskId, sourceColumnId, targetColumnId, currPostn);
+    }
   });
 });
 
