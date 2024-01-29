@@ -74,18 +74,14 @@ export default class App {
   static moveTask(taskId, sourceColumnId, targetColumnId, newPosition) {
     const data = read();
 
-    // Find the source and target columns
     const sourceColumn = data.find((col) => col.columnId == sourceColumnId);
     const targetColumn = data.find((col) => col.columnId == targetColumnId);
 
-    // Find the task in the source column
     const task = sourceColumn.tasks.find((t) => t.taskId == taskId);
 
-    // Update the task's position in the source column
     const sourceTaskIndex = sourceColumn.tasks.indexOf(task);
     sourceColumn.tasks.splice(sourceTaskIndex, 1);
 
-    // Update the task's position in the target column
     task.position = newPosition;
     targetColumn.tasks.splice(newPosition, 0, task);
 
@@ -146,11 +142,6 @@ const read = () => {
   return JSON.parse(data);
 };
 
-// const save = (data) => {
-//   localStorage.setItem("data", JSON.stringify(data));
-//   columnCount();
-// };
-
 const getDate = () => {
   const currentDate = new Date();
 
@@ -160,16 +151,3 @@ const getDate = () => {
 
   return `${day}/${month}/${year}`;
 };
-
-// const columnCount = () => {
-//   const data = read();
-
-//   const todo = document.querySelector("span.todo");
-//   todo.textContent = data[0].tasks.length;
-
-//   const pending = document.querySelector("span.pending");
-//   pending.textContent = data[1].tasks.length;
-
-//   const completed = document.querySelector("span.completed");
-//   completed.textContent = data[2].tasks.length;
-// };

@@ -99,6 +99,8 @@ App.getAllTasks().forEach((tasks, index) => {
   });
 });
 
+let sourceColumnId;
+
 taskbox.forEach((column) => {
   column.addEventListener("click", (e) => {
     e.preventDefault();
@@ -131,7 +133,6 @@ taskbox.forEach((column) => {
     }
 
     if (e.target.classList.contains("delete")) {
-      console.log("hit trash can");
       e.target.parentElement.parentElement.parentElement.parentElement.remove();
       App.deleteTask(e.target.dataset.id);
     }
@@ -140,6 +141,7 @@ taskbox.forEach((column) => {
   column.addEventListener("dragstart", (e) => {
     if (e.target.classList.contains("card")) {
       e.target.classList.add("dragging");
+      sourceColumnId = e.target.parentElement.dataset.column;
     }
   });
   let currPostn;
@@ -161,7 +163,6 @@ taskbox.forEach((column) => {
         insertIndex = columnCards.length;
         currPostn = insertIndex;
       }
-      console.log(currPostn);
 
       column.insertBefore(card, columnCards[insertIndex]);
     }
@@ -172,15 +173,8 @@ taskbox.forEach((column) => {
       e.target.classList.remove("dragging");
 
       const taskId = e.target.dataset.id;
-      const sourceColumnId = e.target.parentElement.dataset.column;
 
-      // Identify the target column and new position based on the drop location
-      const targetColumnId = e.target.parentElement.dataset.column; // Extracted from the dragover event;
-      // const newPosition = columnCards.findIndex((card) =>
-      //   card.classList.contains("dragging")
-      // );
-
-      console.log(currPostn);
+      const targetColumnId = e.target.parentElement.dataset.column; //
 
       App.moveTask(taskId, sourceColumnId, targetColumnId, currPostn);
     }
@@ -198,7 +192,6 @@ addForm.forEach((form) => {
         form.task.value.trim(),
         form.colors.value
       );
-      // console.log(form.colors.value);
       addTaskCard(task, form.submit.dataset.id);
       addClickEventToColorPicker();
       form.reset();
@@ -238,10 +231,6 @@ const addClickEventToColorPicker = () => {
             "post-it"
           )
         ) {
-          console.log(
-            (e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.previousElementSibling.firstElementChild.className =
-              "")
-          );
           e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.previousElementSibling.firstElementChild.className = `post-it ${color}`;
 
           App.updateTask(taskId, {

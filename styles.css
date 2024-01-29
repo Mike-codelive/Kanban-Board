@@ -25,6 +25,10 @@ body {
   padding: 0px;
 }
 
+a {
+  text-decoration: none;
+}
+
 h6,
 h5,
 h4,
@@ -69,8 +73,7 @@ ol {
   --Post-it-add-width: 285px;
 }
 
-main {
-  /* width: 100vw; */
+body {
   min-height: 100vh;
   height: 100%;
   background-color: var(--BG-PY-color);
@@ -149,7 +152,6 @@ title p {
   padding: 30px 20px;
   box-sizing: border-box;
   border-radius: 0 0 0 30px/45px;
-  /* background-color: #ffa; */
   outline: none;
   font-size: 20px;
   resize: none;
@@ -201,10 +203,8 @@ title p {
 
 form .bi-plus {
   background-image: url(./assets/add_FILL0.svg);
-  /* color: var(--BI-plus); */
   filter: invert(37%) sepia(100%) saturate(609%) hue-rotate(81deg)
     brightness(95%) contrast(95%);
-  /* border: 2px solid var(--BI-plus); */
 }
 
 .add {
@@ -285,14 +285,18 @@ form .bi-plus {
   cursor: pointer;
 }
 
-/* end of temp custom */
+footer {
+  max-width: 90vw;
+  margin: auto auto;
+  margin-top: 5rem;
+  padding: 2rem;
+  background-color: var(--BG-PY-color);
+  border-radius: 15px;
+}
 
 .card.dragging {
   opacity: 0.5;
 }
-
-/* .taskbox {
-} */
 
 .post-it-orange {
   background-color: var(--PY-post-it-color);
